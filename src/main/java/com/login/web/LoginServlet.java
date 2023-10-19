@@ -2,34 +2,27 @@ package com.login.web;
 
 import java.io.IOException;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-	public LoginServlet() {
-		super();
-	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String email = request.getParameter("email");
+		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
-		response.setContentType("text/html");
-		if (email.equals("abc@gmail.com") && password.equals("123")) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/ProfileServlet");
-			dispatcher.forward(request, response);
+
+		if (userName.equals("Tamizh") && password.equals("123")) {
+			HttpSession session = request.getSession(true);
+
+			session.setAttribute("userName", userName);
+			response.sendRedirect(request.getContextPath() + "/ProfileServlet");
+
 		} else {
-			response.sendRedirect("login.html");
+			response.sendRedirect("login.jsp");
 		}
 	}
 
