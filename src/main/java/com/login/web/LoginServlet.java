@@ -14,6 +14,14 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
+		
+		String dbUrl = getServletContext().getInitParameter("databaseUrl");
+		
+		getServletContext().setAttribute("userSessionCount", 10);
+		
+		System.out.println();
+		
+		System.out.println(dbUrl);
 
 		if (userName.equals("Tamizh") && password.equals("123")) {
 			HttpSession session = request.getSession(true);
