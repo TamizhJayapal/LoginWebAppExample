@@ -2,6 +2,7 @@ package com.login.web;
 
 import java.io.IOException;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,15 +20,15 @@ public class LoginServlet extends HttpServlet {
 		
 		getServletContext().setAttribute("userSessionCount", 10);
 		
-		System.out.println();
-		
-		System.out.println(dbUrl);
+		System.out.println("Context param: "+dbUrl);
 
 		if (userName.equals("Tamizh") && password.equals("123")) {
 			HttpSession session = request.getSession(true);
 
 			session.setAttribute("userName", userName);
-			response.sendRedirect(request.getContextPath() + "/ProfileServlet");
+			//response.sendRedirect(request.getContextPath() + "/ProfileServlet");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/ProfileServlet");
+			dispatcher.forward(request, response);
 
 		} else {
 			response.sendRedirect("login.jsp");

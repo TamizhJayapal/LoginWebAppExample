@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns="https://jakarta.ee/xml/ns/jakartaee"
- 	xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" 
- 	id="WebApp_ID" version="6.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
   <display-name>LoginWebAppExample</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -29,8 +25,8 @@
     <servlet-name>ProfileServlet</servlet-name>
     <servlet-class>com.dashbord.ProfileServlet</servlet-class>
     <init-param>
-    	<param-name>data</param-name>
-    	<param-value>profile details</param-value>
+      <param-name>data</param-name>
+      <param-value>profile details</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
@@ -47,10 +43,33 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/LogoutServlet</url-pattern>
   </servlet-mapping>
-  
   <context-param>
-  	<param-name>databaseUrl</param-name>
- 	<param-value>jdbc:mysql://localhost/mydb</param-value>
+    <param-name>databaseUrl</param-name>
+    <param-value>jdbc:mysql://localhost/mydb</param-value>
   </context-param>
-  
+  <servlet>
+    <description></description>
+    <display-name>CommonServlet</display-name>
+    <servlet-name>CommonServlet</servlet-name>
+    <servlet-class>com.common.CommonServlet</servlet-class>
+    <init-param>
+      <description></description>
+      <param-name>servletId</param-name>
+      <param-value>10</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CommonServlet</servlet-name>
+    <url-pattern>/CommonServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SampleServlet</display-name>
+    <servlet-name>SampleServlet</servlet-name>
+    <servlet-class>com.common.SampleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SampleServlet</servlet-name>
+    <url-pattern>/SampleServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
